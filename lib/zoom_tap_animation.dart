@@ -26,6 +26,7 @@ class ZoomTapAnimation extends StatefulWidget {
   // beginCurve: the curve animation type of the begin zoom in animation.
   // endCurve: the curve animation type of the end zoom in animation.
   final Curve beginCurve, endCurve;
+  final HitTestBehavior? behavior;
 
   const ZoomTapAnimation(
       {Key? key,
@@ -39,6 +40,7 @@ class ZoomTapAnimation extends StatefulWidget {
       this.beginCurve = Curves.decelerate,
       this.endCurve = Curves.fastOutSlowIn,
       this.onLongTap,
+       this.behavior,
       this.enableLongTapRepeatEvent = false})
       : super(key: key);
   @override
@@ -83,6 +85,7 @@ class _ZoomTapAnimationState extends State<ZoomTapAnimation>
     return GestureDetector(
       // call one tap event
       onTap: widget.onTap,
+      behavior: widget.behavior,
       // call long tap one event if the long tap repeat(loop) is false
       onLongPress: widget.onLongTap != null && !widget.enableLongTapRepeatEvent
           ? _onLongPress
